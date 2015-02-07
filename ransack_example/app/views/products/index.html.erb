@@ -1,31 +1,40 @@
 <h1>Listing products</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Published</th>
-      <th>Due date</th>
-      <th>Made on</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.number %></td>
-        <td><%= product.published %></td>
-        <td><%= product.due_date %></td>
-        <td><%= product.made_on %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<%= search_form_for @search, url: search_products_path, method: :post do |f| %>
+  <%= f.condition_fields do |c| %>
+    <%= render "condition_fields", f: c %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
+  <div class="field">
+    Sort:
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
     <% end %>
-  </tbody>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+<table id="products">
+  <tr>
+    <th><%= sort_link @search, :name, "Product Name" %></th>
+    <th><%= sort_link @search, :number, "Number" %></th>
+    <th><%= sort_link @search, :published, "Published" %></th>
+    <th><%= sort_link @search, :due_date, "Due date" %></th>
+    <th><%= sort_link @search, :made_on, "Made on" %></th>
+    <th colspan="3"></th>
+  </tr>
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.number %></td>
+    <td><%= product.published %></td>
+    <td><%= product.due_date %></td>
+    <td><%= product.made_on %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
 </table>
 
 <br>
