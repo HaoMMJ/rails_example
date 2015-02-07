@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+20.times do |i|
+  Product.create(
+    name: "Iphone #{i}",
+    number: i,
+    published: (i % 2 == 0)? true: false,
+    due_date: Date.today + i*30,
+    made_on: Time.now + i*10000
+  )
+end
