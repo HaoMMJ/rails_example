@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  number: 1
+  published: false
+  due_date: 2015-02-07
+  made_on: 2015-02-07 13:11:05
+
+two:
+  name: MyString
+  number: 1
+  published: false
+  due_date: 2015-02-07
+  made_on: 2015-02-07 13:11:05
