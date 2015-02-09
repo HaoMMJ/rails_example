@@ -55,4 +55,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :products do
+    collection { post :search, to: 'products#index' }
+  end
 end
